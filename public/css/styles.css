@@ -12,6 +12,10 @@
     --main-text-color: #A3B0B7;
 
     --section-max-width: 1468px;
+
+    --sm-breakpoint: 600px;
+    --sm-md-breakpoint: 750px;
+    --lg-breakpoint: 1200px;
 }
 
 @font-face {
@@ -377,9 +381,7 @@ section {
     padding: 3rem;
 }
 
-
-
-@media (min-width: 600px)  {
+@media (min-width: var(--sm-breakpoint))  {
     #menu-icon-hamburger {
         display: none;
     }
@@ -389,7 +391,7 @@ section {
     }
 }
 
-@media (min-width: 750px)  {
+@media (min-width: var(--sm-md-breakpoint))  {
     #pricing-card {
         display: flex;
     }
@@ -431,7 +433,7 @@ section {
     }
 }
 
-@media (min-width: 1200px)  {
+@media (min-width: var(--lg-breakpoint))  {
     #testimonials {
         flex-direction: row;
         justify-content: space-between;
