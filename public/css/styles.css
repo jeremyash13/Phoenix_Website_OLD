@@ -110,8 +110,9 @@ a.call-to-action h5 {
     background-color: var(--accent-color-cta);
     padding: 1.2rem 2rem;
     max-width: max-content;
-    margin: 0 auto;
+    margin: .25rem auto;
     border-radius: 5px;
+    box-shadow: 0 7px 20px -5px rgba(0, 0, 0, .3);
 }
 
 .call-to-action-icon {
@@ -121,6 +122,12 @@ a.call-to-action h5 {
 
 .bold {
     font-weight: 600;
+}
+
+.phoenix-accent {
+    font-family: Recoleta;
+    font-size: 1.2rem;
+    color: var(--accent-color);
 }
 
 .accent {
@@ -220,6 +227,40 @@ a.call-to-action h5 {
     h6 {
         color: var(--main-text-color);
         font-size: 1.5rem;
+    }
+}
+
+#hero {
+    height: 90vh;
+    background-image: linear-gradient(to bottom, 
+        rgba(36,32,39,0) 0%, 
+        rgba(36,32,39,0) 50%, 
+        rgba(36,32,39,1) 100%),
+        url("../images/hero-image_1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    /* background-position-x: 20%; */
+    /* background-position-y: 50%; */
+
+}
+
+#hero-image {
+
+}
+
+#hero-content {
+    margin: auto 0;
+    max-width: 600px;
+    padding-bottom: 10rem;
+}
+
+#landing-about {
+    max-width: 800px;
+    margin: 0 auto;
+
+    p {
+        text-align: center;
     }
 }
 
@@ -339,11 +380,6 @@ section {
     row-gap: 6rem;
 }
 
-.call-to-action {
-    margin-top: .25rem;
-    margin-bottom: .25rem;
-}
-
 #faq-items {
     .faq-item {
         margin-bottom: 8rem;
@@ -414,6 +450,10 @@ section {
 
     .faq-item {
         max-width: 45%;
+    }
+    
+    #footer-header {
+        padding: 0;
     }
 
     .footer-wrapper {

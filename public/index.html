@@ -3,7 +3,29 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+    <title>Phoenix | Home</title>
+
+    <link rel="stylesheet" href="css/styles.css">
+
+    <script defer>
+        // Mobile Nav Menu Open/Close Logic
+        document.addEventListener("DOMContentLoaded", () => {
+            let closeBtn = document.querySelector("#menu-icon-close");
+            let openBtn = document.querySelector("#menu-icon-hamburger");
+            let mobileMenu = document.querySelector("#mobile-nav-menu-open");
+            let doc = document.querySelector("html");
+
+            openBtn.addEventListener("click", () => {
+                mobileMenu.classList.remove("hidden");
+                doc.classList.add("disable-scroll");
+            });
+            
+            closeBtn.addEventListener("click", () => {
+                mobileMenu.classList.add("hidden");
+                doc.classList.remove("disable-scroll");
+            });
+        });
+    </script>
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/10.3.1/firebase-app-compat.js"></script>
@@ -22,68 +44,144 @@
       to avoid connecting the SDK to running emulators.
     -->
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
-
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
   </head>
   <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete!!!!!</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
-    </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+    <header>
+        <nav id="navbar" class="">
+            <a id="nav-logo" class="nav-item-primary" href="/index.html">
+                <h6>Phoenix</h6>
+            </a>
+            <a href="/blog.html" class="nav-item-secondary">
+                <h6>Blog</h6>
+            </a>
+            <a href="/features.html" class="nav-item-secondary">
+                <h6>Features</h6>
+            </a>
+            <a href="/pricing.html" class="nav-item-secondary">
+                <h6 id="nav-item-download">Download</h6>
+            </a>
+            <img id="menu-icon-hamburger" src="./images/hamburger-menu.svg"/>
+        </nav>
+        <nav id="mobile-nav-menu-open" class="hidden">
+            <div class="mobile-nav-menu-open-wrapper">
+                <a class="" href="/index.html">
+                    <h6>Phoenix</h6>
+                </a>
+                <a href="/blog.html" class="">
+                    <h6>Blog</h6>
+                </a>
+                <a href="/features.html" class="">
+                    <h6>Features</h6>
+                </a>
+                <a href="/pricing.html" class="">
+                    <h6 id="nav-item-download">Download</h6>
+                </a>
+                <img id="menu-icon-close" src="./images/close.svg"/>
+            </div>
+        </nav>
+    </header>
 
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
-    </script>
+    <section id="hero" class="section-b">
+        <div class="section-wrapper flex-col">
+          <div id="hero-content">
+            <h2 class="section-heading">Your journey starts here.</h2>
+            <p>
+              Introducing <span class="phoenix-accent">Phoenix</span>, guardian of the world’s most precious resource—attention. In a world filled with distractions like social media, pornography, and video games, our app stands as a sentinel, protecting and nurturing your attention.
+            </p>
+          </div>
+          <!-- <img id="hero-image" src="./images/hero-image_5824x3264.png" alt=""/> -->
+        </div>
+    </section>
+
+    <section class="section-a">
+        <div class="section-wrapper flex-col">
+          <div id="landing-about">
+            <h2 class="section-heading">What is Phoenix?</h2>
+            <p>
+              <span class="phoenix-accent">Phoenix</span> is a tool designed to block digital distractions, promote productivity, and redefine your relationship with technology. It enables you to create personalized lists of apps and websites to block, set timers, schedule breaks, and more.
+            </p>
+          </div>
+        </div>
+    </section>
+
+    <section class="section-b">
+        <div class="section-wrapper flex-col">
+            <h2 class="section-heading">Why Phoenix?</h2>
+            <div class="">
+              <div>
+                <div class="why-reason">
+                  <h3>Focus and Productivity:</h3>
+                  <p>
+                    Your attention is the key to unlocking your true potential. By eliminating distractions, <span class="phoenix-accent">Phoenix</span> helps you develop laser-like focus, allowing you to accomplish tasks efficiently and achieve your goals with remarkable productivity.
+                  </p>
+                </div>
+              </div>
+              <div>
+                <div class="why-reason">
+                  <h3>Self-development and Growth:</h3>
+                  <p>
+                    Your attention shapes who you become. By freeing yourself from the weight of destructive habits, <span class="phoenix-accent">Phoenix</span> empowers you to embark on a journey of self-discovery and personal growth. Cultivate healthier habits, nurture your mind, and unlock new levels of creativity and inspiration.
+                  </p>
+                </div>
+              </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-a">
+        <div class="section-wrapper flex-col">
+            <div class="">
+              <div>
+                <div class="why-reason">
+                  <h3>A Brighter Future:</h3>
+                  <p>
+                    Your attention determines the quality of your life. By reclaiming control over your digital habits, <span class="phoenix-accent">Phoenix</span> enables you to forge a brighter future. Experience the joy of uninterrupted moments with loved ones, deepen your relationships, and invest your attention in activities that truly matter.
+                  </p>
+                </div>
+              </div>
+              <div class="why-conclusion">
+                <p>
+                  With <span class="phoenix-accent">Phoenix</span>, you hold the key to self-development, healthier habits, and a life free from the chains of compulsion. Take charge of your attention, unlock your full potential, and embrace a future brimming with possibilities. Try <span class="phoenix-accent">Phoenix</span> today and witness the transformative power of focused attention.
+                </p>
+              </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-b">
+      <div class="section-wrapper flex-col">
+          <h2 class="section-heading">Curious what Phoenix has to offer?</h2>
+          <a href="/features.html" class="call-to-action">
+              <h5>Explore Features</h5>
+          </a>
+      </div>
+    </section>
+    
+    <footer id="footer">
+        <div class="footer-wrapper">
+            <h5 id="footer-header">
+                Phoenix
+            </h5>
+            <div id="footer-items" class="">
+                <div class="flex-col">
+                    <a href="/features.html">Features</a>
+                    <a href="/pricing.html">Pricing</a>
+                    <a href="/guide.html">User Guide</a>
+                    <a href="/release-notes.html">Release Notes</a>
+                </div>
+                <div class="flex-col">
+                    <a href="/privacy.html">Privacy Policy</a>
+                    <a href="/terms.html">Terms of Use</a>
+                </div>
+                <div class="flex-col">
+                    <a href="/blog.html">Blog</a>
+                </div>
+            </div>
+        </div>
+        <div class="flex-col">
+            <span id="copyright">Copyright © 2023 “Phoenix Software”, Inc.</span>
+        </div>
+    </footer>
   </body>
 </html>
