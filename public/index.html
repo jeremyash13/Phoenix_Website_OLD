@@ -7,25 +7,8 @@
 
     <link rel="stylesheet" href="css/styles.css">
 
-    <script defer>
-        // Mobile Nav Menu Open/Close Logic
-        document.addEventListener("DOMContentLoaded", () => {
-            let closeBtn = document.querySelector("#menu-icon-close");
-            let openBtn = document.querySelector("#menu-icon-hamburger");
-            let mobileMenu = document.querySelector("#mobile-nav-menu-open");
-            let doc = document.querySelector("html");
-
-            openBtn.addEventListener("click", () => {
-                mobileMenu.classList.remove("hidden");
-                doc.classList.add("disable-scroll");
-            });
-            
-            closeBtn.addEventListener("click", () => {
-                mobileMenu.classList.add("hidden");
-                doc.classList.remove("disable-scroll");
-            });
-        });
-    </script>
+    <!-- Mobile Nav Menu Open/Close Logic -->
+    <script defer src="./scripts/navbar.js" />
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/10.3.1/firebase-app-compat.js"></script>
@@ -83,16 +66,23 @@
     </header>
 
     <section id="hero" class="section-b">
-        <div class="section-wrapper flex-col">
-          <div id="hero-content">
-            <h2 class="section-heading">Your journey starts here.</h2>
-            <p>
-              Introducing <span class="phoenix-accent">Phoenix</span>, guardian of the world’s most precious resource—attention. In a world filled with distractions like social media, pornography, and video games, our app stands as a sentinel, protecting and nurturing your attention.
-            </p>
-          </div>
-          <!-- <img id="hero-image" src="./images/hero-image_5824x3264.png" alt=""/> -->
+      <div id="hero-wrapper" class="section-wrapper flex-col">
+        <div id="hero-content">
+          <h2 class="section-heading">Your journey starts here.</h2>
+          <p>
+            Introducing <span class="phoenix-accent">Phoenix</span>, guardian of the world’s most precious resource—attention. In a world filled with distractions like social media, pornography, and video games, our app stands as a sentinel, protecting and nurturing your attention.
+          </p>
         </div>
+
+        <a href="/features.html" class="call-to-action">
+          <h5>
+            Explore Features
+          </h5>
+        </a>
+
+      </div>
     </section>
+
 
     <section class="section-a">
         <div class="section-wrapper flex-col">
@@ -108,22 +98,24 @@
     <section class="section-b">
         <div class="section-wrapper flex-col">
             <h2 class="section-heading">Why Phoenix?</h2>
-            <div class="">
-              <div>
-                <div class="why-reason">
+            <div class="flex-col">
+              <div class="why-reason">
+                <div class="why-reason-content">
                   <h3>Focus and Productivity:</h3>
                   <p>
-                    Your attention is the key to unlocking your true potential. By eliminating distractions, <span class="phoenix-accent">Phoenix</span> helps you develop laser-like focus, allowing you to accomplish tasks efficiently and achieve your goals with remarkable productivity.
+                    <i>Your attention is the key to unlocking your true potential.</i> By eliminating distractions, <span class="phoenix-accent">Phoenix</span> helps you develop laser-like focus, allowing you to accomplish tasks efficiently and achieve your goals with remarkable productivity.
                   </p>
                 </div>
+                <img class="why-image" src="./images/focus-and-productivity.svg" alt="Focus and Productivity:">
               </div>
-              <div>
-                <div class="why-reason">
+              <div class="why-reason flex-reverse">
+                <div class="why-reason-content">
                   <h3>Self-development and Growth:</h3>
                   <p>
-                    Your attention shapes who you become. By freeing yourself from the weight of destructive habits, <span class="phoenix-accent">Phoenix</span> empowers you to embark on a journey of self-discovery and personal growth. Cultivate healthier habits, nurture your mind, and unlock new levels of creativity and inspiration.
+                    <i>Your attention shapes who you become.</i> By freeing yourself from the weight of destructive habits, <span class="phoenix-accent">Phoenix</span> empowers you to embark on a journey of self-discovery and personal growth. Cultivate healthier habits, nurture your mind, and unlock new levels of creativity and inspiration.
                   </p>
                 </div>
+                <img class="why-image" src="./images/self-development-and-growth.svg" alt="Self-development and Growth:">
               </div>
             </div>
         </div>
@@ -131,14 +123,15 @@
 
     <section class="section-a">
         <div class="section-wrapper flex-col">
-            <div class="">
-              <div>
-                <div class="why-reason">
+            <div class="flex-col">
+              <div class="why-reason">
+                <div class="why-reason-content">
                   <h3>A Brighter Future:</h3>
                   <p>
-                    Your attention determines the quality of your life. By reclaiming control over your digital habits, <span class="phoenix-accent">Phoenix</span> enables you to forge a brighter future. Experience the joy of uninterrupted moments with loved ones, deepen your relationships, and invest your attention in activities that truly matter.
+                  <i>Your attention determines the quality of your life.</i> By reclaiming control over your digital habits, <span class="phoenix-accent">Phoenix</span> enables you to forge a brighter future. Experience the joy of uninterrupted moments with loved ones, deepen your relationships, and invest your attention in activities that truly matter.
                   </p>
                 </div>
+                <img class="why-image" src="./images/a-brighter-future.svg" alt="A Brighter Future:">
               </div>
               <div class="why-conclusion">
                 <p>

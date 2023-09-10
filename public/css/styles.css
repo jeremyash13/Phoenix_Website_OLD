@@ -75,6 +75,11 @@ a:any-link {
     text-decoration: none;
 }
 
+.transparent-nav {
+    background-color: transparent !important;
+    box-shadow: unset !important;
+}
+
 .hidden {
     display: none !important;
 }
@@ -97,9 +102,7 @@ a:any-link {
 }
 
 .section-heading {
-    margin-bottom: 4rem;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 4rem auto;
 }
 
 a.call-to-action h5 {
@@ -153,9 +156,13 @@ a.call-to-action h5 {
 }
 
 #navbar {
+    z-index: 100;
+    position: fixed;
+    width: 100%;
     display: flex;
     padding: 1.25rem;
     gap: 2rem;
+    box-shadow: 0 5px 7px 0 rgba(0,0,0,.3);
 
     #nav-item-download {
         color: var(--accent-color);
@@ -210,7 +217,7 @@ a.call-to-action h5 {
     position: fixed;
     inset: 0;
     background-color: var(--main-color-3);
-    z-index: 10;
+    z-index: 200;
     display: grid;
     place-items: center;
 
@@ -231,28 +238,45 @@ a.call-to-action h5 {
 }
 
 #hero {
-    height: 90vh;
+    height: 95vh;
     background-image: linear-gradient(to bottom, 
         rgba(36,32,39,0) 0%, 
-        rgba(36,32,39,0) 50%, 
+        rgba(36,32,39,0) 80%, 
         rgba(36,32,39,1) 100%),
-        url("../images/hero-image_1.jpg");
+        url("../images/hero-image_1.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    /* background-position-x: 20%; */
-    /* background-position-y: 50%; */
+    padding: 0;
+    padding-bottom: 6rem;
+    min-width: 1200px;
 
+    .call-to-action {
+        position: absolute;
+        padding: 1.2rem;
+        bottom: 0;
+        left: min(50vw, 50%);
+        transform: translateX(-50%);
+        min-width: 210px;
+    }
 }
 
-#hero-image {
+#hero-wrapper {
+    margin: 0;
+    width: 100vw;
+    position: relative;
 
+    p {
+        font-size: clamp(1.05rem, 2vw, 1.5rem);
+        line-height: clamp(2.2rem, 4vw, 3.5rem);
+    }
 }
 
 #hero-content {
     margin: auto 0;
-    max-width: 600px;
+    max-width: 680px;
     padding-bottom: 10rem;
+    padding-top: 2rem;
 }
 
 #landing-about {
@@ -262,6 +286,10 @@ a.call-to-action h5 {
     p {
         text-align: center;
     }
+}
+
+.hero-cta-wrapper {
+
 }
 
 section {
@@ -282,6 +310,75 @@ section {
 
 .section-b {
     background-color: var(--main-color-2);
+}
+
+.why-image {
+    max-width: 400px;
+    width: 100%;
+    min-width: 300px;
+    margin: 0 auto;
+    margin-top: 2rem;
+}
+
+.why-reason {
+    display: flex;
+    flex-direction: column;
+    margin: 3rem auto;
+    width: 100%;
+}
+
+.why-reason-content {
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    height: max-content;
+
+    h3 {
+        margin-bottom: 1rem;
+        text-align: left;
+    }
+}
+
+.why-conclusion {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    p {
+        text-align: center;
+    }
+}
+
+.checkmark {
+    max-width: 1.5rem;
+    margin-bottom: auto;
+    margin-top: .5rem;
+}
+
+.subheading {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.features-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    h4 {
+        text-align: left;
+        margin-bottom: 2rem;
+    }
+}
+
+.feature-body {
+    padding-left: 1.2rem;
+    margin-bottom: 2.5rem;
+}
+
+.feature-img {
+    border-radius: .75rem;
+    margin-top: 2rem;
+    /* max-width: 40%; */
 }
 
 #testimonials {
@@ -320,6 +417,10 @@ section {
     top: -5.5rem;
     width: 10rem;
     z-index: 1;
+}
+
+#pricing-section {
+    padding-top: 12rem;
 }
 
 #pricing-card {
@@ -413,6 +514,15 @@ section {
     padding: 3rem;
 }
 
+/* @media (orientation: landscape) {
+    #hero {
+
+        .call-to-action {
+            bottom: 15%;
+        }
+    }
+} */
+
 @media (min-width: 600px)  {
     #menu-icon-hamburger {
         display: none;
@@ -421,9 +531,49 @@ section {
     .nav-item-secondary {
         display: block;
     }
+    
 }
 
 @media (min-width: 750px)  {
+    #hero-wrapper {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 1200px;
+
+        p {
+            text-align: left;
+        }
+    }
+
+    #hero-content {
+
+        .section-heading {
+            text-align: left;
+        }
+    }
+
+    .why-reason {
+        flex-direction: row;
+    }
+
+    .flex-reverse {
+        flex-direction: row-reverse;
+    }
+
+    .features-wrapper {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .features-body {
+        max-width: 40%;
+    }
+
+    .feature-img {
+        margin: auto 0;
+        max-width: 50%;
+    }
+
     #pricing-card {
         display: flex;
     }
