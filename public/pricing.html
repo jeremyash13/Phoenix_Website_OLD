@@ -7,25 +7,8 @@
 
     <link rel="stylesheet" href="css/styles.css">
 
-    <script defer>
-        // Mobile Nav Menu Open/Close Logic
-        document.addEventListener("DOMContentLoaded", () => {
-            let closeBtn = document.querySelector("#menu-icon-close");
-            let openBtn = document.querySelector("#menu-icon-hamburger");
-            let mobileMenu = document.querySelector("#mobile-nav-menu-open");
-            let doc = document.querySelector("html");
-
-            openBtn.addEventListener("click", () => {
-                mobileMenu.classList.remove("hidden");
-                doc.classList.add("disable-scroll");
-            });
-            
-            closeBtn.addEventListener("click", () => {
-                mobileMenu.classList.add("hidden");
-                doc.classList.remove("disable-scroll");
-            });
-        });
-    </script>
+    <!-- Mobile Nav Menu Open/Close Logic -->
+    <script defer src="./scripts/navbar.js" />
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/10.3.1/firebase-app-compat.js"></script>
@@ -82,7 +65,7 @@
         </nav>
     </header>
 
-    <section class="section-a">
+    <section id="pricing-section" class="section-a">
         <div class="section-wrapper flex-col">
             <h1 class="section-heading">Pricing</h1>
             <div id="testimonials" class="">
