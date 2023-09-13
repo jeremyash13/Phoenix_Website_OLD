@@ -385,6 +385,12 @@ section {
     margin-bottom: 3rem;
 }
 
+.section-subtext {
+    font-size: clamp(1.3rem, 3.5vw, 1.65rem);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
 .features-wrapper {
     display: flex;
     flex-direction: column;
@@ -506,7 +512,7 @@ section {
     row-gap: 6rem;
 }
 
-#success-page-header {
+#success-cancel-page-header {
     display: flex;
     flex-direction: column;
 
@@ -518,6 +524,12 @@ section {
     span {
         text-align: center;
     }
+}
+
+#try-again-text {
+    text-align: center;
+    margin-top: 10rem;
+    font-size: 1.5rem;
 }
 
 #success-page-instructions-wrapper {

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Phoenix | Cancel</title>
+
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <!-- Mobile Nav Menu Open/Close Logic -->
+    <script defer src="./scripts/navbar.js" />
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/10.3.1/firebase-app-compat.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <!-- <script defer src="/__/firebase/10.3.1/firebase-auth-compat.js"></script> -->
+    <!-- <script defer src="/__/firebase/10.3.1/firebase-database-compat.js"></script> -->
+    <script
+      defer
+      src="/__/firebase/10.3.1/firebase-firestore-compat.js"
+    ></script>
+    <script
+      defer
+      src="/__/firebase/10.3.1/firebase-functions-compat.js"
+    ></script>
+    <!-- <script defer src="/__/firebase/10.3.1/firebase-messaging-compat.js"></script> -->
+    <script defer src="/__/firebase/10.3.1/firebase-storage-compat.js"></script>
+    <script
+      defer
+      src="/__/firebase/10.3.1/firebase-analytics-compat.js"
+    ></script>
+    <!-- <script defer src="/__/firebase/10.3.1/firebase-remote-config-compat.js"></script> -->
+    <script
+      defer
+      src="/__/firebase/10.3.1/firebase-performance-compat.js"
+    ></script>
+    <!-- 
+      initialize the SDK after all desired features are loaded, set useEmulator to false
+      to avoid connecting the SDK to running emulators.
+    -->
+    <script defer src="/__/firebase/init.js?useEmulator=false"></script>
+  </head>
+  <body>
+    <header>
+      <nav id="navbar" class="">
+        <a id="nav-logo" class="nav-item-primary" href="/index.html">
+          <h6>Phoenix</h6>
+        </a>
+        <a href="/blog.html" class="nav-item-secondary">
+          <h6>Blog</h6>
+        </a>
+        <a href="/features.html" class="nav-item-secondary">
+          <h6>Features</h6>
+        </a>
+        <a href="/pricing.html" class="nav-item-secondary">
+          <h6 id="nav-item-download">Download</h6>
+        </a>
+        <img id="menu-icon-hamburger" src="./images/hamburger-menu.svg" />
+      </nav>
+      <nav id="mobile-nav-menu-open" class="hidden">
+        <div class="mobile-nav-menu-open-wrapper">
+          <a class="" href="/index.html">
+            <h6>Phoenix</h6>
+          </a>
+          <a href="/blog.html" class="">
+            <h6>Blog</h6>
+          </a>
+          <a href="/features.html" class="">
+            <h6>Features</h6>
+          </a>
+          <a href="/pricing.html" class="">
+            <h6 id="nav-item-download">Download</h6>
+          </a>
+          <img id="menu-icon-close" src="./images/close.svg" />
+        </div>
+      </nav>
+    </header>
+
+    <section id="" class="section-a">
+      <div class="section-wrapper flex-col">
+        <div id="success-cancel-page-header">
+          <h1 class="">Oops!</h1>
+          <span class="section-subtext">Something went wrong.</span>
+          <span>Your purchase did not go through.</span>
+        </div>
+
+        <span id="try-again-text">Try again</span>
+
+        <div id="pricing-card" class="">
+          <div id="pricing-card-left" class="">
+            <div class="pricing-card-heading-wrapper">
+              <h4 class="pricing-card-header">Phoenix</h4>
+              <span class="pricing-card-sub-header">Lifetime Access</span>
+            </div>
+
+            <hr />
+
+            <div class="pricing-card-main">
+              <p>Free lifetime updates</p>
+              <p>
+                One purchase grants a license key that can support
+                <span class="bold">up to 5 devices simultaneously</span>
+              </p>
+            </div>
+          </div>
+
+          <div id="pricing-card-right" class="">
+            <div>
+              <p class="text-center">Pay once, own forever</p>
+              <h3 class="text-center">US $19.99</h3>
+            </div>
+
+            <div id="pricing-card-right-footer" class="">
+              <span>Download the <a href="#">Phoenix client</a></span>
+              <a href="#" class="call-to-action">
+                <div class="flex-row">
+                  <img
+                    class="call-to-action-icon"
+                    src="./images/windows-icon.svg"
+                  />
+                  <h5>Buy Now</h5>
+                </div>
+              </a>
+              <span class="accent">*Supports Windows 10/11</span>
+              <span class="accent">*MacOS support coming soon</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="browser-extension-links" class="section-b">
+      <div class="section-wrapper flex-col">
+        <h2 class="section-heading">Curious what Phoenix has to offer?</h2>
+        <a href="/features.html" class="call-to-action">
+          <h5>Explore Features</h5>
+        </a>
+      </div>
+    </section>
+
+    <section class="section-a">
+      <div class="section-wrapper flex-col">
+        <h2 class="section-heading">FAQ</h2>
+        <div id="faq-items" class="">
+          <div class="faq-item">
+            <h5 class="faq-item-header">
+              Can I use my product/license key on more than one computer?
+            </h5>
+            <p>
+              Yes, you can use your key on up to 5 devices simultaneously.
+              Activating the key on a 6th device will automatically deactivate
+              one of the 5 previously used devices.
+            </p>
+          </div>
+          <div class="faq-item">
+            <h5 class="faq-item-header">
+              Is my purchase valid for both Windows and MacOS?
+            </h5>
+            <p>
+              Currently only Windows is supported, but support for MacOS is
+              coming soon. Yes, you will be able to use your key on either
+              Windows or MacOS devices.
+            </p>
+          </div>
+          <div class="faq-item">
+            <h5 class="faq-item-header">Is my payment secure?</h5>
+            <p>
+              Yes, we use Stripe as our payment processor, one of the biggest
+              names in the game.
+            </p>
+          </div>
+          <div class="faq-item">
+            <h5 class="faq-item-header">
+              I never received an email or product key, what do I do?
+            </h5>
+            <p>
+              First, double check your spam folder. In rare cases it can take up
+              to an hour to receive your email confirmation. If you still
+              haven’t received your key within an hour, shoot us an email at:
+              support@phoenixblocker.com
+            </p>
+          </div>
+          <div class="faq-item">
+            <h5 class="faq-item-header">
+              Phoenix isn’t what I expected, can I get a refund?
+            </h5>
+            <p>
+              All sales are final. However, Phoenix is constantly improving and
+              any feedback on we can further improve it is very much
+              appreciated. Let us know your thoughts. Shoot us an email at
+              feedback@phoenixblocker.com
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer id="footer">
+      <div class="footer-wrapper">
+        <h5 id="footer-header">Phoenix</h5>
+        <div id="footer-items" class="">
+          <div class="flex-col">
+            <a href="/features.html">Features</a>
+            <a href="/pricing.html">Pricing</a>
+            <a href="/guide.html">User Guide</a>
+            <a href="/release-notes.html">Release Notes</a>
+          </div>
+          <div class="flex-col">
+            <a href="/privacy.html">Privacy Policy</a>
+            <a href="/terms.html">Terms of Use</a>
+          </div>
+          <div class="flex-col">
+            <a href="/blog.html">Blog</a>
+          </div>
+        </div>
+      </div>
+      <div class="flex-col">
+        <span id="copyright">Copyright © 2023 “Phoenix Software”, Inc.</span>
+      </div>
+    </footer>
+  </body>
+</html>
