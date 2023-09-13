@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "phoenix-74ffa"
-  }
+    "default": "phoenix-74ffa",
+    "dev": "phoenix-74ffa"
+  },
+  "targets": {},
+  "etags": {}
 }
