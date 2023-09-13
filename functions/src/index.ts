@@ -17,7 +17,7 @@ export const stripeCheckout = onRequest(
     if (process.env.STRIPE_PRIVATE_KEY_DEV) {
       stripeApiKey = process.env.STRIPE_PRIVATE_KEY_DEV;
     } else {
-      stripeApiKey = process.env.STRIPE_PRIVATE_KEY;
+      stripeApiKey = process.env.STRIPE_PRIVATE_KEY_PROD;
     }
 
     const stripe = new Stripe(`${stripeApiKey}`, { apiVersion: "2023-08-16" });
