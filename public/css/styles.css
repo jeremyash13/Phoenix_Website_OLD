@@ -11,12 +11,17 @@
     --accent-color-cta: #D2A664;
     --main-text-color: #A3B0B7;
 
+    --browser-links-border: rgba(217, 184, 135, .53);
+    --browser-links-background: rgba(217, 184, 135, .33);
+
     --section-max-width: 1468px;
 }
 
 @font-face {
     font-family: "Recoleta";
-    src: url("../fonts/Recoleta-Regular.WOFF") format("woff");
+    src:
+        url("../fonts/Recoleta-Regular.WOFF") format("woff");
+        /* url("../fonts/Recoleta-Light.WOFF") format("woff"); */
 }
 
 @font-face {
@@ -69,6 +74,20 @@ p, a, span {
     text-align: justify;
     line-height: 2.2rem;
     font-size: 1.05rem;
+}
+
+ol, ul {
+    color: var(--main-text-color);
+    font-family: WorkSans;
+    font-weight: light;
+    line-height: 2.75rem;
+    font-size: clamp(1.05rem,3.5vw,1.3rem);
+    padding-left: 1.75rem;
+    margin-top: 1.5rem;
+}
+
+.list-header {
+    font-size: clamp(1.05rem,3.5vw,1.3rem);
 }
 
 a:any-link {
@@ -360,6 +379,12 @@ section {
     font-weight: bold;
 }
 
+.section-subheading {
+    font-size: clamp(1.3rem, 3.5vw, 1.65rem);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
 .features-wrapper {
     display: flex;
     flex-direction: column;
@@ -481,6 +506,58 @@ section {
     row-gap: 6rem;
 }
 
+#success-page-header {
+    display: flex;
+    flex-direction: column;
+
+    h1 {
+        margin: 4rem auto 2rem auto;
+        font-size: clamp(3rem, 10vw, 4rem);
+    }
+
+    span {
+        text-align: center;
+    }
+}
+
+#success-page-instructions-wrapper {
+    margin-top: 8rem;
+}
+
+#browser-links-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.browser-link-wrapper {
+    max-width: 120px;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1.5rem;
+    border: solid 2px transparent;
+    border-radius: .6rem;
+    transition: background-color 0.20s ease-out, border-color 0.20s ease-out;
+
+    span {
+        text-align: center;
+    }
+    
+    &:hover {
+        border: solid 2px var(--browser-links-border);
+        background-color: var(--browser-links-background);
+    }
+}
+
+.browser-link-group {
+    display: flex;
+    max-width: max-content;
+    margin: 0 auto;
+
+    a {
+        min-width: 97px;
+    }
+}
+
 #faq-items {
     .faq-item {
         margin-bottom: 8rem;
@@ -590,6 +667,13 @@ section {
         margin-top: auto;
     }
 
+    #browser-links-wrapper {
+        display: flex;
+        flex-direction: row;
+        max-width: max-content;
+        margin: 0 auto;
+    }
+
     #faq-items {
         display: flex;
         column-gap: 2rem;
@@ -600,6 +684,10 @@ section {
 
     .faq-item {
         max-width: 45%;
+    }
+
+    .faq-item-header {
+        text-align: left;
     }
     
     #footer-header {
