@@ -9,6 +9,7 @@
     --main-color-4: #2c272e;
     --accent-color: #D9B887;
     --accent-color-cta: #D2A664;
+    --accent-color-cta-hero: #C8974D;
     --main-text-color: #A3B0B7;
 
     --browser-links-border: rgba(217, 184, 135, .53);
@@ -277,6 +278,7 @@ a.call-to-action h5 {
         left: min(50vw, 50%);
         transform: translateX(-50%);
         min-width: 210px;
+        background-color: var(--accent-color-cta-hero);
     }
 }
 
@@ -533,7 +535,7 @@ section {
 }
 
 #success-page-instructions-wrapper {
-    margin-top: 8rem;
+    margin: 14rem 0;
 }
 
 #browser-links-wrapper {
@@ -562,13 +564,15 @@ section {
 
 .browser-link-group {
     display: flex;
-    max-width: max-content;
-    margin: 0 auto;
+    width: 100%;
+    justify-content: space-around;
 
     a {
         min-width: 97px;
     }
 }
+
+
 
 #faq-items {
     .faq-item {
@@ -577,6 +581,10 @@ section {
         .faq-item-header {
             margin-bottom: 2rem;
         }
+    }
+
+    .link-email {
+        text-decoration: underline;
     }
 }
 
@@ -602,15 +610,6 @@ section {
     max-width: var(--section-max-width);
     padding: 3rem;
 }
-
-/* @media (orientation: landscape) {
-    #hero {
-
-        .call-to-action {
-            bottom: 15%;
-        }
-    }
-} */
 
 @media (min-width: 600px)  {
     #menu-icon-hamburger {
@@ -682,8 +681,6 @@ section {
     #browser-links-wrapper {
         display: flex;
         flex-direction: row;
-        max-width: max-content;
-        margin: 0 auto;
     }
 
     #faq-items {
