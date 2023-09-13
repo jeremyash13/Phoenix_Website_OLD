@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Phoenix | Features</title>
 
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles.css" />
 
     <!-- Mobile Nav Menu Open/Close Logic -->
     <script defer src="./scripts/navbar.js" />
@@ -15,244 +15,253 @@
     <!-- include only the Firebase features as you need -->
     <!-- <script defer src="/__/firebase/10.3.1/firebase-auth-compat.js"></script> -->
     <!-- <script defer src="/__/firebase/10.3.1/firebase-database-compat.js"></script> -->
-    <script defer src="/__/firebase/10.3.1/firebase-firestore-compat.js"></script>
-    <script defer src="/__/firebase/10.3.1/firebase-functions-compat.js"></script>
+    <script
+      defer
+      src="/__/firebase/10.3.1/firebase-firestore-compat.js"
+    ></script>
+    <script
+      defer
+      src="/__/firebase/10.3.1/firebase-functions-compat.js"
+    ></script>
     <!-- <script defer src="/__/firebase/10.3.1/firebase-messaging-compat.js"></script> -->
     <script defer src="/__/firebase/10.3.1/firebase-storage-compat.js"></script>
-    <script defer src="/__/firebase/10.3.1/firebase-analytics-compat.js"></script>
+    <script
+      defer
+      src="/__/firebase/10.3.1/firebase-analytics-compat.js"
+    ></script>
     <!-- <script defer src="/__/firebase/10.3.1/firebase-remote-config-compat.js"></script> -->
-    <script defer src="/__/firebase/10.3.1/firebase-performance-compat.js"></script>
+    <script
+      defer
+      src="/__/firebase/10.3.1/firebase-performance-compat.js"
+    ></script>
     <!-- 
       initialize the SDK after all desired features are loaded, set useEmulator to false
       to avoid connecting the SDK to running emulators.
     -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+    <script defer src="/__/firebase/init.js?useEmulator=false"></script>
   </head>
   <body>
-
     <header>
-        <nav id="navbar" class="">
-            <a id="nav-logo" class="nav-item-primary" href="/index.html">
-                <h6>Phoenix</h6>
-            </a>
-            <a href="/blog.html" class="nav-item-secondary">
-                <h6>Blog</h6>
-            </a>
-            <a href="/features.html" class="nav-item-secondary">
-                <h6>Features</h6>
-            </a>
-            <a href="/pricing.html" class="nav-item-secondary">
-                <h6 id="nav-item-download">Download</h6>
-            </a>
-            <img id="menu-icon-hamburger" src="./images/hamburger-menu.svg"/>
-        </nav>
-        <nav id="mobile-nav-menu-open" class="hidden">
-            <div class="mobile-nav-menu-open-wrapper">
-                <a class="" href="/index.html">
-                    <h6>Phoenix</h6>
-                </a>
-                <a href="/blog.html" class="">
-                    <h6>Blog</h6>
-                </a>
-                <a href="/features.html" class="">
-                    <h6>Features</h6>
-                </a>
-                <a href="/pricing.html" class="">
-                    <h6 id="nav-item-download">Download</h6>
-                </a>
-                <img id="menu-icon-close" src="./images/close.svg"/>
-            </div>
-        </nav>
+      <nav id="navbar" class="">
+        <a id="nav-logo" class="nav-item-primary" href="/index.html">
+          <h6>Phoenix</h6>
+        </a>
+        <a href="/blog.html" class="nav-item-secondary">
+          <h6>Blog</h6>
+        </a>
+        <a href="/features.html" class="nav-item-secondary">
+          <h6>Features</h6>
+        </a>
+        <a href="/pricing.html" class="nav-item-secondary">
+          <h6 id="nav-item-download">Download</h6>
+        </a>
+        <img id="menu-icon-hamburger" src="./images/hamburger-menu.svg" />
+      </nav>
+      <nav id="mobile-nav-menu-open" class="hidden">
+        <div class="mobile-nav-menu-open-wrapper">
+          <a class="" href="/index.html">
+            <h6>Phoenix</h6>
+          </a>
+          <a href="/blog.html" class="">
+            <h6>Blog</h6>
+          </a>
+          <a href="/features.html" class="">
+            <h6>Features</h6>
+          </a>
+          <a href="/pricing.html" class="">
+            <h6 id="nav-item-download">Download</h6>
+          </a>
+          <img id="menu-icon-close" src="./images/close.svg" />
+        </div>
+      </nav>
     </header>
 
     <section class="section-a">
-        <div class="section-wrapper flex-col">
-            <h2 class="section-heading">Features</h2>
-            <div class="features-wrapper">
-                <div class="features-body">
-                    <h4>Website Blocking</h4>
-                    <div class="flex-row">
-                        <img class="checkmark" src="./images/checkmark.svg" alt="">
-                        <div class="feature-body flex-col">
-                            <span class="subheading">
-                                Block Domains
-                            </span>
-                            <p>
-                                Adding <b>instagram.com</b> to the block list will block all webpages on Instagram including subdomains.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="flex-row">
-                        <img class="checkmark" src="./images/checkmark.svg" alt="">
-                        <div class="feature-body flex-col">
-                            <span class="subheading">
-                                Block URLs
-                            </span>
-                            <p>
-                                Adding <b>reddit.com/r/dankmemes</b> will block that specific page only.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="flex-row">
-                        <img class="checkmark" src="./images/checkmark.svg" alt="">
-                        <div class="feature-body flex-col">
-                            <span class="subheading">
-                                Use wildcards
-                            </span>
-                            <p>
-                                Use * to represent any text. Adding <b>reddit.com/search/*q=*memes*</b> to the block list will prevent any searches containing the word “memes”.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="flex-row">
-                        <img class="checkmark" src="./images/checkmark.svg" alt="">
-                        <div class="feature-body flex-col">
-                            <span class="subheading">
-                                Whitelist domains and URLs
-                            </span>
-                            <p>
-                                Adding a domain or URL to the exemption list will exempt it from being blocked.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="flex-row">
-                        <img class="checkmark" src="./images/checkmark.svg" alt="">
-                        <div class="feature-body flex-col">
-                            <span class="subheading">
-                                Import block lists from presets
-                            </span>
-                            <p>
-                                Phoenix has 11 site categories available as presets to add to the block list. (Social Media, Gambling, Porn, etc.)
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <img class="feature-img" src="./images/website-blocking.jpg" alt="block websites">
+      <div class="section-wrapper flex-col">
+        <h2 class="section-heading">Features</h2>
+        <div class="features-wrapper">
+          <div class="features-body">
+            <h4>Website Blocking</h4>
+            <div class="flex-row">
+              <img class="checkmark" src="./images/checkmark.svg" alt="" />
+              <div class="feature-body flex-col">
+                <span class="subheading"> Block Domains </span>
+                <p>
+                  Adding <b>instagram.com</b> to the block list will block all
+                  webpages on Instagram including subdomains.
+                </p>
+              </div>
             </div>
-        </div>
-    </section>
-
-    <section class="section-b">
-        <div class="section-wrapper flex-col">
-            <div class="features-wrapper">
-                <div class="features-body">
-                    <h4>App Blocking</h4>
-                    <div class="flex-row">
-                        <img class="checkmark" src="./images/checkmark.svg" alt="">
-                        <div class="feature-body flex-col">
-                            <span class="subheading">
-                                Block files
-                            </span>
-                            <p>
-                                Browse to the .exe file and add it to the block list.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="flex-row">
-                        <img class="checkmark" src="./images/checkmark.svg" alt="">
-                        <div class="feature-body flex-col">
-                            <span class="subheading">
-                                Block folders
-                            </span>
-                            <p>
-                                Adding a folder to the block list will block all .exe files in that folder. Great for blocking your entire steam or game library all at once.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <img class="feature-img" src="./images/app-blocking.jpg" alt="block apps">
+            <div class="flex-row">
+              <img class="checkmark" src="./images/checkmark.svg" alt="" />
+              <div class="feature-body flex-col">
+                <span class="subheading"> Block URLs </span>
+                <p>
+                  Adding <b>reddit.com/r/dankmemes</b> will block that specific
+                  page only.
+                </p>
+              </div>
             </div>
-        </div>
-    </section>
-
-    <section class="section-a">
-        <div class="section-wrapper flex-col">
-            <div class="features-wrapper">
-                <div class="features-body">
-                    <h4>Block Policies</h4>
-                    <div class="flex-row">
-                        <img class="checkmark" src="./images/checkmark.svg" alt="">
-                        <div class="feature-body flex-col">
-                            <span class="subheading">
-                                Breaks
-                            </span>
-                            <p>
-                                Set a number of breaks you can take at anytime during block.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="flex-row">
-                        <img class="checkmark" src="./images/checkmark.svg" alt="">
-                        <div class="feature-body flex-col">
-                            <span class="subheading">
-                                Block duration
-                            </span>
-                            <p>
-                                Define the duration of the block in hours and minutes.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="flex-row">
-                        <img class="checkmark" src="./images/checkmark.svg" alt="">
-                        <div class="feature-body flex-col">
-                            <span class="subheading">
-                                Lock blocks
-                            </span>
-                            <p>
-                                Locking a block prevents the block from being started and stopped at will. Locking a block will force it to run its entire duration before being disabled.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="flex-row">
-                        <img class="checkmark" src="./images/checkmark.svg" alt="">
-                        <div class="feature-body flex-col">
-                            <span class="subheading">
-                                Distraction Free YouTube mode
-                            </span>
-                            <p>
-                                Modify your YouTube experience to be more focused. DF YouTube hides all YouTube feeds, but still allows you to search and watch specific content.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <img class="feature-img" src="./images/block-policies.jpg" alt="block policies">
+            <div class="flex-row">
+              <img class="checkmark" src="./images/checkmark.svg" alt="" />
+              <div class="feature-body flex-col">
+                <span class="subheading"> Use wildcards </span>
+                <p>
+                  Use * to represent any text. Adding
+                  <b>reddit.com/search/*q=*memes*</b> to the block list will
+                  prevent any searches containing the word “memes”.
+                </p>
+              </div>
             </div>
+            <div class="flex-row">
+              <img class="checkmark" src="./images/checkmark.svg" alt="" />
+              <div class="feature-body flex-col">
+                <span class="subheading"> Whitelist domains and URLs </span>
+                <p>
+                  Adding a domain or URL to the exemption list will exempt it
+                  from being blocked.
+                </p>
+              </div>
+            </div>
+            <div class="flex-row">
+              <img class="checkmark" src="./images/checkmark.svg" alt="" />
+              <div class="feature-body flex-col">
+                <span class="subheading">
+                  Import block lists from presets
+                </span>
+                <p>
+                  Phoenix has 11 site categories available as presets to add to
+                  the block list. (Social Media, Gambling, Porn, etc.)
+                </p>
+              </div>
+            </div>
+          </div>
+          <img
+            class="feature-img"
+            src="./images/website-blocking.jpg"
+            alt="block websites"
+          />
         </div>
+      </div>
     </section>
 
     <section class="section-b">
       <div class="section-wrapper flex-col">
-          <h2 class="section-heading">Interested in learning more?</h2>
-          <a href="/pricing.html" class="call-to-action">
-              <h5>View Pricing</h5>
-          </a>
+        <div class="features-wrapper">
+          <div class="features-body">
+            <h4>App Blocking</h4>
+            <div class="flex-row">
+              <img class="checkmark" src="./images/checkmark.svg" alt="" />
+              <div class="feature-body flex-col">
+                <span class="subheading"> Block files </span>
+                <p>Browse to the .exe file and add it to the block list.</p>
+              </div>
+            </div>
+            <div class="flex-row">
+              <img class="checkmark" src="./images/checkmark.svg" alt="" />
+              <div class="feature-body flex-col">
+                <span class="subheading"> Block folders </span>
+                <p>
+                  Adding a folder to the block list will block all .exe files in
+                  that folder. Great for blocking your entire steam or game
+                  library all at once.
+                </p>
+              </div>
+            </div>
+          </div>
+          <img
+            class="feature-img"
+            src="./images/app-blocking.jpg"
+            alt="block apps"
+          />
+        </div>
       </div>
     </section>
-    
-    <footer id="footer">
-        <div class="footer-wrapper">
-            <h5 id="footer-header">
-                Phoenix
-            </h5>
-            <div id="footer-items" class="">
-                <div class="flex-col">
-                    <a href="/features.html">Features</a>
-                    <a href="/pricing.html">Pricing</a>
-                    <a href="/guide.html">User Guide</a>
-                    <a href="/release-notes.html">Release Notes</a>
-                </div>
-                <div class="flex-col">
-                    <a href="/privacy.html">Privacy Policy</a>
-                    <a href="/terms.html">Terms of Use</a>
-                </div>
-                <div class="flex-col">
-                    <a href="/blog.html">Blog</a>
-                </div>
+
+    <section class="section-a">
+      <div class="section-wrapper flex-col">
+        <div class="features-wrapper">
+          <div class="features-body">
+            <h4>Block Policies</h4>
+            <div class="flex-row">
+              <img class="checkmark" src="./images/checkmark.svg" alt="" />
+              <div class="feature-body flex-col">
+                <span class="subheading"> Breaks </span>
+                <p>
+                  Set a number of breaks you can take at anytime during block.
+                </p>
+              </div>
             </div>
+            <div class="flex-row">
+              <img class="checkmark" src="./images/checkmark.svg" alt="" />
+              <div class="feature-body flex-col">
+                <span class="subheading"> Block duration </span>
+                <p>Define the duration of the block in hours and minutes.</p>
+              </div>
+            </div>
+            <div class="flex-row">
+              <img class="checkmark" src="./images/checkmark.svg" alt="" />
+              <div class="feature-body flex-col">
+                <span class="subheading"> Lock blocks </span>
+                <p>
+                  Locking a block prevents the block from being started and
+                  stopped at will. Locking a block will force it to run its
+                  entire duration before being disabled.
+                </p>
+              </div>
+            </div>
+            <div class="flex-row">
+              <img class="checkmark" src="./images/checkmark.svg" alt="" />
+              <div class="feature-body flex-col">
+                <span class="subheading"> Distraction Free YouTube mode </span>
+                <p>
+                  Modify your YouTube experience to be more focused. DF YouTube
+                  hides all YouTube feeds, but still allows you to search and
+                  watch specific content.
+                </p>
+              </div>
+            </div>
+          </div>
+          <img
+            class="feature-img"
+            src="./images/block-policies.jpg"
+            alt="block policies"
+          />
         </div>
-        <div class="flex-col">
-            <span id="copyright">Copyright © 2023 “Phoenix Software”, Inc.</span>
+      </div>
+    </section>
+
+    <section class="section-b">
+      <div class="section-wrapper flex-col">
+        <h2 class="section-heading">Interested in learning more?</h2>
+        <a href="/pricing.html" class="call-to-action">
+          <h5>View Pricing</h5>
+        </a>
+      </div>
+    </section>
+
+    <footer id="footer">
+      <div class="footer-wrapper">
+        <h5 id="footer-header">Phoenix</h5>
+        <div id="footer-items" class="">
+          <div class="flex-col">
+            <a href="/features.html">Features</a>
+            <a href="/pricing.html">Pricing</a>
+            <a href="/guide.html">User Guide</a>
+            <a href="/release-notes.html">Release Notes</a>
+          </div>
+          <div class="flex-col">
+            <a href="/privacy.html">Privacy Policy</a>
+            <a href="/terms.html">Terms of Use</a>
+          </div>
+          <div class="flex-col">
+            <a href="/blog.html">Blog</a>
+          </div>
         </div>
+      </div>
+      <div class="flex-col">
+        <span id="copyright">Copyright © 2023 “Phoenix Software”, Inc.</span>
+      </div>
     </footer>
   </body>
 </html>
