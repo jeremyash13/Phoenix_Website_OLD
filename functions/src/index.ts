@@ -2,9 +2,11 @@ import Stripe from "stripe";
 import { onRequest } from "firebase-functions/v2/https";
 import * as logger from "firebase-functions/logger";
 import { Customer } from "./types/Customer";
+import { ProductKeyEmail } from "./services/email/ProductKeyEmail";
 
 const { initializeApp } = require("firebase-admin/app");
 const { getFirestore, Timestamp } = require("firebase-admin/firestore");
+const nodemailer = require("nodemailer");
 
 initializeApp();
 const db = getFirestore();
@@ -40,109 +42,131 @@ export const stripeCheckout = onRequest(
   }
 );
 
-export const webhooks = onRequest(async (request, response) => {
-  const event = request.body;
+export const webhooks = onRequest(
+  { secrets: ["MAILTRAP_API_PASSWORD"] },
+  async (request, response) => {
+    const event = request.body;
 
-  logger.info(`${event.type}`, { structuredData: true });
-  console.log(event.type);
+    logger.info(`${event.type}`, { structuredData: true });
+    console.log(event.type);
 
-  switch (event.type) {
-    case "checkout.session.completed":
-      const checkoutSession = event.data.object;
-      await handleCheckoutSucceeded(checkoutSession);
-      break;
-    // ... handle other event types
-    default:
-      logger.info(`Unhandled event type ${event.type}`, {
-        structuredData: true,
+    switch (event.type) {
+      case "checkout.session.completed":
+        const checkoutSession = event.data.object;
+        await handleCheckoutSucceeded(checkoutSession);
+        break;
+      // ... handle other event types
+      default:
+        logger.info(`Unhandled event type ${event.type}`, {
+          structuredData: true,
+        });
+    }
+
+    response.status(200).send();
+
+    async function handleCheckoutSucceeded(
+      checkoutSession: Stripe.Checkout.Session
+    ): Promise<void> {
+      let customer = new Customer(checkoutSession);
+
+      let transport = nodemailer.createTransport({
+        host: "live.smtp.mailtrap.io",
+        port: 587,
+        auth: {
+          user: "api",
+          pass: `${process.env.MAILTRAP_API_PASSWORD}`,
+        },
       });
-  }
 
-  response.status(200).send();
+      // convert Customer custom type to generic object for firestore entry
+      let customerAsDoc = {};
+      let newDoc = Object.assign(customerAsDoc, customer);
+      // console.log(newDoc)
 
-  async function handleCheckoutSucceeded(
-    checkoutSession: Stripe.Checkout.Session
-  ): Promise<void> {
-    let customer = new Customer(checkoutSession);
+      newDoc.product_key = await generateProductKey();
+      newDoc.timestamp = Timestamp.fromDate(new Date());
 
-    // convert Customer custom type to generic object for firestore entry
-    let customerAsDoc = {};
-    let newDoc = Object.assign(customerAsDoc, customer);
-    // console.log(newDoc)
+      let email = new ProductKeyEmail(customer.email, newDoc.product_key);
 
-    newDoc.product_key = await generateProductKey();
-    newDoc.timestamp = Timestamp.fromDate(new Date());
+      try {
+        const docRef = await db.collection("customers").add(newDoc);
+        console.log("Document written with ID: ", docRef.id);
 
-    // email receipt to customer
-    // email product key to customer
+        // email product key to customer
+        transport.sendMail(email, (error: any, info: any) => {
+          if (error) {
+            console.log("Error sending email:", error);
+          } else {
+            console.log("Email sent successfully");
+          }
+        });
 
-    try {
-      const docRef = await db.collection("customers").add(newDoc);
-      console.log("Document written with ID: ", docRef.id);
-      return;
-    } catch (e) {
-      console.error("Error adding document: ", e);
-      return;
+        return;
+      } catch (e) {
+        console.error("Error adding document: ", e);
+        return;
+      }
     }
-  }
 
-  async function generateProductKey(): Promise<any> {
-    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    const timestamp = new Date().getTime().toString(36).toUpperCase(); // Convert current time to base36 and uppercase
-    const maxKeyLength = 16;
+    async function generateProductKey(): Promise<string> {
+      const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+      const timestamp = new Date().getTime().toString(36).toUpperCase(); // Convert current time to base36 and uppercase
+      const maxKeyLength = 16;
 
-    let randomString = "";
-    let timeSeedIndex = 0;
+      let randomString = "";
+      let timeSeedIndex = 0;
 
-    try {
-      for (let i = 0; i < maxKeyLength; i++) {
-        if (timeSeedIndex < timestamp.length) {
-          randomString += timestamp[timeSeedIndex];
-          timeSeedIndex++;
+      try {
+        for (let i = 0; i < maxKeyLength; i++) {
+          if (timeSeedIndex < timestamp.length) {
+            randomString += timestamp[timeSeedIndex];
+            timeSeedIndex++;
+          } else {
+            // If we run out of time seed characters, use random characters
+            const randomIndex = Math.floor(Math.random() * characters.length);
+            randomString += characters[randomIndex];
+          }
+
+          if ((i + 1) % 4 === 0 && i !== 15) {
+            // Add a hyphen after every 4th character (except at the end)
+            randomString += "-";
+          }
+        }
+
+        let isCollision = await checkCollision(randomString);
+
+        if (isCollision) {
+          return await generateProductKey();
+        }
+      } catch (error) {
+        console.error("error generating product key:", error);
+      }
+
+      const promise = new Promise<string>((resolve) => resolve(randomString));
+      return promise;
+    }
+
+    async function checkCollision(productKey: string): Promise<boolean> {
+      try {
+        const customersRef = await db.collection("customers");
+        const snapshot = await customersRef
+          .where("product_key", "==", productKey)
+          .get();
+        if (snapshot.empty) {
+          console.log(
+            "Product Key Collision Check: No Collision detected. Proceeding... "
+          );
+          return false;
         } else {
-          // If we run out of time seed characters, use random characters
-          const randomIndex = Math.floor(Math.random() * characters.length);
-          randomString += characters[randomIndex];
+          console.log(
+            "Product Key Collision Check: Collision detected. Generating new product key..."
+          );
+          return true;
         }
-
-        if ((i + 1) % 4 === 0 && i !== 15) {
-          // Add a hyphen after every 4th character (except at the end)
-          randomString += "-";
-        }
+      } catch (error) {
+        console.error("error checking for product key collision:", error);
+        return true; // returning true to generate a new key and try again...
       }
-
-      let isCollision = await checkCollision(randomString);
-
-      if (isCollision) {
-        return await generateProductKey();
-      } else {
-        return randomString;
-      }
-    } catch (error) {
-      console.error("error generating product key:", error);
     }
   }
-
-  async function checkCollision(productKey: string): Promise<boolean> {
-    try {
-      const customersRef = await db.collection("customers");
-      const snapshot = await customersRef
-        .where("product_key", "==", productKey)
-        .get();
-      if (snapshot.empty) {
-        console.log(
-          "Product Key Collision Check: No Collision detected. Proceeding... "
-        );
-        return false;
-      } else {
-        console.log(
-          "Product Key Collision Check: Collision detected. Generating new product key..."
-        );
-        return true;
-      }
-    } catch (error) {
-      console.error("error checking for product key collision:", error);
-      return true; // returning true to generate a new key and try again...
-    }
-  }
-});
+);
