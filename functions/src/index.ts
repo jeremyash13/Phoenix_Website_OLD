@@ -5,7 +5,7 @@ import { Customer } from "./types/Customer";
 import { ProductKeyEmail } from "./services/email/ProductKeyEmail";
 
 const { initializeApp } = require("firebase-admin/app");
-const { getFirestore, Timestamp } = require("firebase-admin/firestore");
+const { getFirestore, Timestamp, FieldValue } = require("firebase-admin/firestore");
 const nodemailer = require("nodemailer");
 
 initializeApp();
@@ -170,3 +170,80 @@ export const webhooks = onRequest(
     }
   }
 );
+
+export const activate = onRequest(async (request, response) => {
+  
+  const data = JSON.parse(request.body);
+  console.log(data);
+
+  const { productKey, HWID } = data;
+
+  try {
+    const customersCollection = await db.collection("customers");
+
+    const snapshot = await customersCollection.where('product_key', '==', productKey).get();
+
+    if (snapshot.empty) {
+      console.log('Error while validating product key: No matching documents.');
+      response.status(200).send({validation: "failed"});
+      return;
+    }
+
+    snapshot.forEach(async (doc: any) => {
+      // console.log(doc.data());
+      const hwids_array = doc.data().hardware_ids;
+      
+      if (hwids_array.length > 4) {
+        // Deactivated oldest machine if HWID's exceed 5
+        await doc.ref.update({hardware_ids: FieldValue.arrayRemove(hwids_array[0])})
+      }
+      
+      // append HWID in current document
+      await doc.ref.update({hardware_ids: FieldValue.arrayUnion(HWID)})
+      console.log("Software activation succeeded. Doc ID: ", doc.ref.id);
+    });
+
+  } catch (error) {
+    console.error('Error while validating product key:', error);
+    response.status(200).send({validation: "failed", message: request});
+  }
+
+  response.status(200).send({validation: "success"});
+});
+
+export const validate = onRequest(async (request, response) => {
+  
+  const data = JSON.parse(request.body);
+  console.log(data);
+
+  const { productKey, HWID } = data;
+
+  try {
+    const customersCollection = await db.collection("customers");
+
+    const snapshot = await customersCollection.where('product_key', '==', productKey).get();
+
+    if (snapshot.empty) {
+      console.log('Error while validating product key: No matching documents.');
+      response.status(200).send({validation: "failed"});
+      return;
+    }
+
+    snapshot.forEach(async (doc: any) => {
+      // console.log(doc.data());
+      const result = doc.data().hardware_ids.includes(HWID);
+      if (result) {
+        response.status(200).send({validation: "success"});
+        return;
+      }
+
+      console.log("Software activation succeeded. Doc ID: ", doc.ref.id);
+    });
+
+  } catch (error) {
+    console.error('Error while silently validating an installation:', error);
+    response.status(200).send({validation: "failed", message: request});
+  }
+
+  response.status(200).send({validation: "failed"});
+});
