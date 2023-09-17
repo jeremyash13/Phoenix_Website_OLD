@@ -252,20 +252,23 @@ export const validate = onRequest(async (request, response) => {
       return;
     }
 
-    snapshot.forEach(async (doc: any) => {
-      // console.log(doc.data());
-      const result = doc.data().hardware_ids.includes(HWID);
-      if (result) {
-        response.status(200).send({validation: "success"});
-        return;
-      }
+    let result: boolean = true;
 
-      console.log("Software activation succeeded. Doc ID: ", doc.ref.id);
+    snapshot.forEach((doc: any) => {
+      // console.log(doc.data());
+      result = doc.data().hardware_ids.includes(HWID);
     });
 
+    if (result) {
+      console.log("validation successfull");
+      response.status(200).send({validation: "success"});
+      return;
+    }
+    
   } catch (error) {
     console.error('Error while silently validating an installation:', error);
-    response.status(200).send({validation: "failed", message: request});
+    response.status(500).send({validation: "error", message: error});
+    return;
   }
 
   response.status(200).send({validation: "failed"});
