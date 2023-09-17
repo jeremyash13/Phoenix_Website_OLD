@@ -13,14 +13,37 @@ const db = getFirestore();
 
 let stripeApiKey;
 
+function testEmail(username: string, password: string) {
+  let transport = nodemailer.createTransport({
+    host: "smtppro.zoho.com",
+    port: 587,
+    auth: {
+      user: username,
+      pass: password,
+    },
+  });
+
+  let email = new ProductKeyEmail("jeremyash13@gmail.com", "newDoc.product_key");
+
+  transport.sendMail(email, (error: any, info: any) => {
+    if (error) {
+      console.log("Error sending email:", error);
+    } else {
+      console.log("Email sent successfully");
+    }
+  });
+}
+
 export const stripeCheckout = onRequest(
-  { secrets: ["STRIPE_PRIVATE_KEY_PROD"] },
+  { secrets: ["STRIPE_PRIVATE_KEY_PROD", "ZOHO_MAIL_USERNAME", "ZOHO_MAIL_PASSWORD"] },
   async (request, response) => {
     if (process.env.STRIPE_PRIVATE_KEY_DEV) {
       stripeApiKey = process.env.STRIPE_PRIVATE_KEY_DEV;
     } else {
       stripeApiKey = process.env.STRIPE_PRIVATE_KEY_PROD;
     }
+
+    testEmail(`${process.env.ZOHO_MAIL_USERNAME}`, `${process.env.ZOHO_MAIL_PASSWORD}`); //////////////////////////// FOR DEBUGGING
 
     const stripe = new Stripe(`${stripeApiKey}`, { apiVersion: "2023-08-16" });
 
@@ -43,7 +66,7 @@ export const stripeCheckout = onRequest(
 );
 
 export const webhooks = onRequest(
-  { secrets: ["MAILTRAP_API_PASSWORD"] },
+  { secrets: ["MAILTRAP_API_PASSWORD", "ZOHO_MAIL_USERNAME", "ZOHO_MAIL_PASSWORD"] },
   async (request, response) => {
     const event = request.body;
 
@@ -70,11 +93,11 @@ export const webhooks = onRequest(
       let customer = new Customer(checkoutSession);
 
       let transport = nodemailer.createTransport({
-        host: "live.smtp.mailtrap.io",
+        host: "smtppro.zoho.com",
         port: 587,
         auth: {
-          user: "api",
-          pass: `${process.env.MAILTRAP_API_PASSWORD}`,
+          user: process.env.ZOHO_MAIL_USERNAME,
+          pass: process.env.ZOHO_MAIL_PASSWORD,
         },
       });
 
