@@ -53,7 +53,7 @@ h2 {
 }
 
 h3 {
-    font-size: 2rem;
+    font-size: 2.5rem;
 }
 
 h4 {
@@ -85,6 +85,10 @@ ol, ul {
     font-size: clamp(1.05rem,3.5vw,1.3rem);
     padding-left: 1.75rem;
     margin-top: 1.5rem;
+}
+
+li a {
+    font-size: clamp(1.05rem,3.5vw,1.3rem);
 }
 
 .list-header {
@@ -149,12 +153,16 @@ a.call-to-action h5 {
 
 .phoenix-accent {
     font-family: Recoleta;
-    font-size: 1.2rem;
+    font-size: 1.1em;
     color: var(--accent-color);
 }
 
 .accent {
     color: var(--accent-color);
+}
+
+.link-underlined {
+    text-decoration: underline !important;
 }
 
 .flex-row {
@@ -411,7 +419,12 @@ section {
 .feature-img {
     border-radius: .75rem;
     margin-top: 2rem;
-    /* max-width: 40%; */
+}
+
+.activation-img {
+    border-radius: .75rem;
+    margin: auto 0;
+    max-width: 600px;
 }
 
 #testimonials {
@@ -535,7 +548,15 @@ section {
 }
 
 #success-page-instructions-wrapper {
-    margin: 14rem 0;
+    margin: 5rem auto 14rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+#activation-instructions {
+    margin: auto 0;
+    max-width: 600px;
 }
 
 #browser-links-wrapper {
@@ -581,10 +602,6 @@ section {
         .faq-item-header {
             margin-bottom: 2rem;
         }
-    }
-
-    .link-email {
-        text-decoration: underline;
     }
 }
 
@@ -722,6 +739,13 @@ section {
         justify-content: space-between;
         gap: 8rem;
     }
+
+    #success-page-instructions-wrapper {
+        flex-direction: row;
+        gap: 2rem;
+        justify-content: space-between;
+        margin: 14rem auto 14rem auto;
+    }
 }
 
 
@@ -747,6 +771,11 @@ section {
     margin: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+    scroll-padding: 14rem;
+}
+
 html, body {
     overflow-x: clip;
 }
@@ -759,6 +788,7 @@ body {
 img, picture, video, canvas, svg {
     display: block;
     max-width: 100%;
+    width: 100%;
 }
 
 input, button, textarea, select {
