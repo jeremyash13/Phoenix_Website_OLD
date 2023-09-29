@@ -6,33 +6,39 @@ import { ProductKeyEmail } from "./services/email/ProductKeyEmail";
 
 const { initializeApp } = require("firebase-admin/app");
 const { getFirestore, Timestamp, FieldValue } = require("firebase-admin/firestore");
+import { getStorage, getDownloadURL } from "firebase-admin/storage";
+// import { listAll, ref, getStream, StorageReference, getDownloadURL, getStorage } from "firebase/storage";
+
 const nodemailer = require("nodemailer");
 
-initializeApp();
+initializeApp({
+  storageBucket: "phoenix-74ffa.appspot.com"
+});
 const db = getFirestore();
+const storage = getStorage();
 
 let stripeApiKey;
 
-function testEmail(username: string, password: string) {
-  let transport = nodemailer.createTransport({
-    host: "smtppro.zoho.com",
-    port: 587,
-    auth: {
-      user: username,
-      pass: password,
-    },
-  });
+// function testEmail(username: string, password: string) {
+//   let transport = nodemailer.createTransport({
+//     host: "smtppro.zoho.com",
+//     port: 587,
+//     auth: {
+//       user: username,
+//       pass: password,
+//     },
+//   });
 
-  let email = new ProductKeyEmail("jeremyash13@gmail.com", "newDoc.product_key");
+//   let email = new ProductKeyEmail("jeremyash13@gmail.com", "newDoc.product_key");
 
-  transport.sendMail(email, (error: any, info: any) => {
-    if (error) {
-      console.log("Error sending email:", error);
-    } else {
-      console.log("Email sent successfully");
-    }
-  });
-}
+//   transport.sendMail(email, (error: any, info: any) => {
+//     if (error) {
+//       console.log("Error sending email:", error);
+//     } else {
+//       console.log("Email sent successfully");
+//     }
+//   });
+// }
 
 export const stripeCheckout = onRequest(
   { secrets: ["STRIPE_PRIVATE_KEY_PROD", "ZOHO_MAIL_USERNAME", "ZOHO_MAIL_PASSWORD"] },
@@ -43,7 +49,7 @@ export const stripeCheckout = onRequest(
       stripeApiKey = process.env.STRIPE_PRIVATE_KEY_PROD;
     }
 
-    testEmail(`${process.env.ZOHO_MAIL_USERNAME}`, `${process.env.ZOHO_MAIL_PASSWORD}`); //////////////////////////// FOR DEBUGGING
+    // testEmail(`${process.env.ZOHO_MAIL_USERNAME}`, `${process.env.ZOHO_MAIL_PASSWORD}`); //////////////////////////// FOR DEBUGGING
 
     const stripe = new Stripe(`${stripeApiKey}`, { apiVersion: "2023-08-16" });
 
@@ -272,4 +278,82 @@ export const validate = onRequest(async (request, response) => {
   }
 
   response.status(200).send({validation: "failed"});
+});
+
+export const downloadlatest = onRequest(async (request, response) => {
+  
+  // const data = JSON.parse(request.body);
+  // console.log(data);
+
+  // let latestPackageRef: StorageReference;
+  // let latestPackageStream;
+  // let latestPackageStream: NodeJS.ReadableStream;
+
+
+  try {
+
+    const fileRef = getStorage().bucket().file('releases/latest/Phoenix_0.9.1.0_x64.msix');
+    const downloadURL= await getDownloadURL(fileRef);
+    response.redirect(303, downloadURL);
+
+
+
+
+
+
+    // await latestPackageStream
+    //   .on('data', (chunk) => {
+    //     // The file download is complete
+    //     response.write(chunk);
+    //   })
+    //   .on('finish', () => {
+    //     // The file download is complete
+    //     response.status(200).end();
+    //   })
+    //   .on('error', () => {
+    //     // The file download is complete
+    //     response.status(500).end();
+    //   });
+
+
+
+
+
+    // const releasesRef = ref(storage, 'releases/latest');
+
+    // listAll(releasesRef)
+    //   .then((res) => {
+    //     res.items.forEach(async (itemRef) => {
+    //       // All the items under listRef.
+    //       console.log(itemRef.name);
+    //       // const downloadURL = await getDownloadURL(itemRef);
+    //       // response.redirect(303, downloadURL);
+    //     });    
+    //   })
+      // .then(async () => {
+      //   // latestPackageStream = getStream(latestPackageRef);
+
+      //   // latestPackageStream.on('data', (chunk) => {
+      //   //   // Write each chunk of data to the response
+      //   //   response.write(chunk);
+      //   // });
+
+      //   // latestPackageStream.on('error', () => {
+      //   //   // End the response when there are no more chunks
+      //   // response.status(500).end();
+      //   // });
+
+      //   // latestPackageStream.on('end', () => {
+      //   //   // End the response when there are no more chunks
+      //   // response.status(200).end();
+      //   // });
+      // });
+
+
+  } catch (error) {
+    console.error('Error occurred at /downloadlatest:', error);
+    response.status(500).end();
+    return;
+  }
+
 });
