@@ -176,7 +176,7 @@ a.call-to-action h5 {
 }
 
 .text-center {
-    text-align: center;
+    text-align: center !important;
 }
 
 #navbar, #footer {
@@ -590,6 +590,25 @@ section {
 
     a {
         min-width: 97px;
+    }
+}
+
+#privacy-policy {
+    padding: 0 1rem;
+
+    p {
+        margin-bottom: 2rem;
+        font-size: 1.25rem;
+        text-align: justify;
+    }
+
+    a {
+        font-size: 1em;
+    }
+
+    h2 {
+        margin-top: 8rem;
+        margin-bottom: 4rem;
     }
 }
 
