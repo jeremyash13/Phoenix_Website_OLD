@@ -194,7 +194,7 @@ a.call-to-action h5 {
     display: flex;
     padding: 1.25rem;
     gap: 2rem;
-    box-shadow: 0 5px 7px 0 rgba(0,0,0,.3);
+    box-shadow: 0 4px 15px 0 rgba(0,0,0,.3);
 
     & #nav-item-download {
         color: var(--accent-color);
