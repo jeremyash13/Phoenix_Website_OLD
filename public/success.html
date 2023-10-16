@@ -4,11 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Phoenix | Success</title>
+    <link rel="icon" type="image/png" href="./images/favicon.png"/>
 
     <link rel="stylesheet" href="css/styles.css" />
 
     <!-- Mobile Nav Menu Open/Close Logic -->
-    <script defer src="./scripts/navbar.js" />
+    <script src="./scripts/navbar.js"></script>
+    <script src="./scripts/carousel.js"></script>
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/10.3.1/firebase-app-compat.js"></script>
@@ -94,19 +96,30 @@
             <ol>
               <li>
                 Download the <span class="phoenix-accent">Phoenix</span> client
-                <a class="link-underlined" href="#">here.</a>
+                <a
+                  class="link-underlined"
+                  href="ms-windows-store://pdp?hl=en-us&gl=us&productid=9N5D4DRVSJWJ&mode=mini&pos=3832%2C711%2C2576%2C1456&referrer=storeforweb"
+                  >here.</a
+                >
               </li>
               <li>
                 Install and run <span class="phoenix-accent">Phoenix</span>.
               </li>
               <li>Enter the product key received in your email.</li>
               <li>
-                Install the <span class="phoenix-accent">Phoenix</span> <a class="link-underlined" href="#browser-extension-links">browser
-                extension</a> for each browser you own.
+                Install the <span class="phoenix-accent">Phoenix</span>
+                <a class="link-underlined" href="#browser-extension-links"
+                  >browser extension</a
+                >
+                for each browser you own.
               </li>
             </ol>
           </div>
-          <img class="activation-img" src="./images/activation.jpg" alt="phoenix activation" />
+          <img
+            class="activation-img"
+            src="./images/activation.jpg"
+            alt="phoenix activation"
+          />
         </div>
       </div>
     </section>
@@ -118,13 +131,19 @@
         >
         <div id="browser-links-wrapper">
           <div class="browser-link-group">
-            <a href="#">
+            <a
+              href="#"
+              onclick="window.open('https://addons.mozilla.org/en-US/firefox/addon/phoenix-blocker', '_blank', 'location=no,height=275,width=962,scrollbars=yes,status=no'); return false;"
+            >
               <div class="browser-link-wrapper">
                 <img src="./images/firefox-logo.svg" alt="" />
                 <span>Firefox</span>
               </div>
             </a>
-            <a href="#">
+            <a
+              href="#"
+              onclick="window.open('https://chrome.google.com/webstore/detail/phoenix-blocker/hpjjnppmoneeehooommkicnbelklahlg', '_blank', 'location=no,height=275,width=962,scrollbars=yes,status=no'); return false;"
+            >
               <div class="browser-link-wrapper">
                 <img src="./images/chrome-logo.svg" alt="" />
                 <span>Chrome</span>
@@ -139,7 +158,10 @@
           </div>
 
           <div class="browser-link-group">
-            <a href="#">
+            <a
+              href="#"
+              onclick="window.open('https://chrome.google.com/webstore/detail/phoenix-blocker/hpjjnppmoneeehooommkicnbelklahlg', '_blank', 'location=no,height=275,width=962,scrollbars=yes,status=no'); return false;"
+            >
               <div class="browser-link-wrapper">
                 <img src="./images/brave-logo.svg" alt="" />
                 <span>Brave</span>
@@ -151,7 +173,10 @@
                 <span>Edge</span>
               </div>
             </a>
-            <a href="#">
+            <a
+              href="#"
+              onclick="window.open('https://chrome.google.com/webstore/detail/phoenix-blocker/hpjjnppmoneeehooommkicnbelklahlg', '_blank', 'location=no,height=275,width=962,scrollbars=yes,status=no'); return false;"
+            >
               <div class="browser-link-wrapper">
                 <img src="./images/vivaldi-logo.svg" alt="" />
                 <span>Vivaldi</span>
@@ -162,7 +187,67 @@
       </div>
     </section>
 
-    <section class="section-a">
+    <section id="browser-extension-permissions" class="section-a">
+      <div class="section-wrapper">
+        <div id="browser-extension-permissions-wrapper">
+          <div>
+            <div class="content-wrapper">
+              <span>STEP 1</span>
+              <h4>Install Browser Extensions</h4>
+              <p>
+                Follow the links above to install the Phoenix browser extension
+                on <b>every browser you own.</b>
+              </p>
+            </div>
+            <div class="content-wrapper-desktop">
+              <span>STEP 2</span>
+              <h4>Double Check Extension Permissions</h4>
+              <p>
+                <br />
+                <span class="phoenix-accent"> Chromium browsers:</span>
+                (Chrome, Edge, Brave, Vivaldi, Opera)
+                <br />
+                Ensure that the permission <b>Allow in incognito</b> is set to
+                <b>on</b> and the permission for <b>site access</b> is set to
+                <b>on all sites.</b>
+              </p>
+              <br />
+              <p>
+                <span class="phoenix-accent">Mozilla Firefox:</span> <br />
+                Under the <b>Details</b> tab, ensure that the permission
+                <b>Run in Private Windows</b> is set to <b>Allow.</b>
+                <br />
+                Under the <b>Permissions</b> tab, the permissions to access
+                <b>site data</b> for <b>all websites</b> and
+                <b>youtube.com</b> is set to <b>on</b>
+              </p>
+            </div>
+          </div>
+
+          <div id="browser-permissions-img-row">
+            <div id="carousel-label-wrapper">
+              <span class="carousel-label">Chrome</span>
+              <span class="carousel-label invisible">Firefox</span>
+            </div>
+            <div id="browser-permissions-img-wrapper">
+              <img
+              id="browser-permissions-img-chrome"
+              src="./images/browser-extension-permissions-chrome.jpg"
+              alt="chrome browser extension permissions"
+              />
+              <img
+              id="browser-permissions-img-firefox"
+              src="./images/browser-extension-permissions-firefox.jpg"
+              alt="firefox browser extension permissions"
+              class="invisible"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-b">
       <div class="section-wrapper flex-col">
         <h2 class="section-heading">FAQ</h2>
         <div id="faq-items" class="">
@@ -201,7 +286,10 @@
               First, double check your spam folder. In rare cases it can take up
               to an hour to receive your email confirmation. If you still
               haven’t received your key within an hour, send an email to
-              <a class="link-underlined" target="_blank" href="mailto:support@phoenixblocker.com"
+              <a
+                class="link-underlined"
+                target="_blank"
+                href="mailto:support@phoenixblocker.com"
                 >support@phoenixblocker.com</a
               >
             </p>
@@ -214,7 +302,10 @@
               All sales are final. However, Phoenix is constantly improving and
               any feedback on how it can be further improved it is very much
               appreciated. Let us know your thoughts. Send an email to
-              <a class="link-underlined" target="_blank" href="mailto:feedback@phoenixblocker.com"
+              <a
+                class="link-underlined"
+                target="_blank"
+                href="mailto:feedback@phoenixblocker.com"
                 >feedback@phoenixblocker.com</a
               >
             </p>
@@ -231,11 +322,10 @@
             <a href="/features.html">Features</a>
             <a href="/pricing.html">Pricing</a>
             <a href="/guide.html">User Guide</a>
-            <a href="/release-notes.html">Release Notes</a>
           </div>
           <div class="flex-col">
             <a href="/privacy.html">Privacy Policy</a>
-            <a href="/terms.html">Terms of Use</a>
+            <a href="/release-notes.html">Release Notes</a>
           </div>
           <div class="flex-col">
             <a href="/blog.html">Blog</a>
@@ -243,7 +333,7 @@
         </div>
       </div>
       <div class="flex-col">
-        <span id="copyright">Copyright © 2023 “Phoenix Software”, Inc.</span>
+        <span id="copyright">Copyright © 2023 “Phoenix Software”</span>
       </div>
     </footer>
   </body>
