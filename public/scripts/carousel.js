@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     img2.classList.toggle("invisible");
     lbl1.classList.toggle("invisible");
     lbl2.classList.toggle("invisible");
-  }, 4000);
+  }, 6000);
 
   wrapper.addEventListener("mouseover", (e) => {
     if (e.target.tagName === "IMG") {
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         img2.classList.toggle("invisible");
         lbl1.classList.toggle("invisible");
         lbl2.classList.toggle("invisible");
-      }, 4000);
+      }, 6000);
     }
   });
 });
