@@ -315,9 +315,11 @@ a.call-to-action h5 {
 #landing-about {
     max-width: 800px;
     margin: 0 auto;
+    padding: 8rem 0;
 
     & p {
         text-align: center;
+        font-size: 1.5rem;
     }
 }
 
